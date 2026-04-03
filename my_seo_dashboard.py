@@ -22,7 +22,8 @@ df = pd.DataFrame(data)
 col1, col2, col3 = st.columns(3)
 col1.metric("Total Links", len(df))
 if 'Status' in df.columns:
-    live_count = len(df[df['Status'] == 'Live (200 OK)'])
+    live_filter = df['Status'].str.contains('Live|Done|yes', case=False, na=False)
+    live_count = len(df[live_filter])
     col2.metric("Live Links ✅", live_count)
     col3.metric("Broken Links ❌", len(df) - live_count)
 

@@ -29,13 +29,15 @@ if 'Status' in df.columns:
 
 # 4. عرض الجدول التفاعلي
 st.subheader("🔗 All Backlinks Details")
-# 1. تحديد ترتيب الأعمدة
+# 1. قائمة الأعمدة اللي إحنا عاوزينها بالترتيب
 desired_columns = ['LinkID', 'URL', 'DA', 'DR', 'Traffic', 'Country', 'SpamScore', 'status']
 
-# 2. تطبيق الترتيب الجديد على البيانات
-df = df[desired_columns]
+# 2. كود ذكي: بياخد فقط الأعمدة اللي موجودة فعلاً في ملفك من القائمة اللي فوق
+existing_columns = [col for col in desired_columns if col in df.columns]
 
-# 3. عرض الجدول المرتب (بدلاً من السطر القديم)
+# 3. إعادة ترتيب الجدول بناءً على المتاح
+df = df[existing_columns]
+# 4. عرض الجدول
 st.dataframe(df, hide_index=True)
 # 5. زر للتحديث
 if st.button('🔄 Refresh Data'):

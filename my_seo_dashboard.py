@@ -29,8 +29,14 @@ if 'Status' in df.columns:
 
 # 4. عرض الجدول التفاعلي
 st.subheader("🔗 All Backlinks Details")
-st.dataframe(df) # هذا الجدول يمكنك البحث فيه وترتيبه بضغطة زر
+# 1. تحديد ترتيب الأعمدة
+desired_columns = ['LinkID', 'URL', 'DA', 'DR', 'Traffic', 'Country', 'SpamScore', 'status']
 
+# 2. تطبيق الترتيب الجديد على البيانات
+df = df[desired_columns]
+
+# 3. عرض الجدول المرتب (بدلاً من السطر القديم)
+st.dataframe(df, hide_index=True)
 # 5. زر للتحديث
 if st.button('🔄 Refresh Data'):
     st.rerun()

@@ -3,14 +3,7 @@ import boto3
 import pandas as pd
 
 st.set_page_config(page_title="Ahmed's SEO Dashboard", layout="wide")
-st.markdown("""
-    <style>
-    .stDataFrame {
-        border: 1px solid #4CAF50;
-        border-radius: 10px;
-    }
-    </style>
-    """, unsafe_allow_index=True)
+st.markdown("<style>.stDataFrame {border: 2px solid #4CAF50; border-radius: 10px;}</style>", unsafe_allow_html=True)
 st.title("🚀 Real-Time Cloud-Automated SEO Dashboard")
 st.write("Live System Status: Data synchronized via AWS Cloud infrastructure ( AWS DynamoDB & RDS ).")
 

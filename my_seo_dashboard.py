@@ -44,12 +44,19 @@ st.dataframe(
     hide_index=True,
     column_config={
         "status": st.column_config.SelectboxColumn(
-            "Status",
-            help="Link Connectivity Status",
-            options=["Live", "Broken", "done", "not work"], # أضفت الكلمات اللي في ملفك عشان تظهر
+            "Link Status",
+            help="Show if the link is active or broken",
             width="small",
+            options=[
+                "🟢 Live", 
+                "🔴 Broken", 
+                "✅ done", 
+                "❌ not work"
+            ],
         ),
-        "URL": st.column_config.LinkColumn("URL", width="medium")
+        "URL": st.column_config.LinkColumn("Destination URL", width="medium"),
+        "DA": st.column_config.NumberColumn("DA", format="%d ✨"),
+        "Traffic": st.column_config.NumberColumn("Traffic", format="%d 📈")
     }
 )
 # 5. زر للتحديث

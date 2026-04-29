@@ -39,8 +39,12 @@ existing_columns = [col for col in desired_columns if col in df.columns]
 # 3. تفعيل عرض الصفحة بالكامل (Wide Mode) وإظهار الـ Scroll
 st.dataframe(
     df[existing_columns], 
-    use_container_width=True,  # تجعل الجدول يملأ العرض المتاح
-    hide_index=True
+    use_container_width=True, 
+    hide_index=True,
+    column_config={
+        "URL": st.column_config.LinkColumn("URL", width="medium"),
+        "status": st.column_config.TextColumn("Status", width="small")
+    }
 )
 # 5. زر للتحديث
 if st.button('🔄 Refresh Data'):

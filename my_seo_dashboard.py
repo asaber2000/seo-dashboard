@@ -31,20 +31,25 @@ if 'Status' in df.columns:
 st.subheader("🔗 All Backlinks Details")
 # 1. قائمة الأعمدة اللي إحنا عاوزينها بالترتيب
 # 1. قائمة الأعمدة بالترتيب (تأكد من كتابة status بنفس حالة الأحرف في ملفك)
-desired_columns = ['LinkID', 'URL', 'DA', 'DR', 'Traffic', 'Country', 'SpamScore', 'Status']
+# 1. تحديد ترتيب الأعمدة
+desired_columns = ['LinkID', 'URL', 'DA', 'DR', 'Traffic', 'Country', 'SpamScore', 'status']
 
-# 2. التأكد من وجود الأعمدة في الملف لتجنب الأخطاء
+# 2. التأكد من وجود الأعمدة لتجنب الأخطاء
 existing_columns = [col for col in desired_columns if col in df.columns]
 
-# 3. تفعيل عرض الصفحة بالكامل (Wide Mode) وإظهار الـ Scroll
+# 3. عرض الجدول مع خاصية التلوين والـ Scroll
 st.dataframe(
-    df[existing_columns], 
-    use_container_width=True, 
-    hide_index=True,
+    df[existing_columns],
     column_config={
-        "URL": st.column_config.LinkColumn("URL", width="medium"),
-        "status": st.column_config.TextColumn("Status", width="small")
-    }
+        "status": st.column_config.StatusColumn(
+            "Status",
+            help="Link Connectivity Status",
+            options=["Live", "Broken"],
+        ),
+        "URL": st.column_config.LinkColumn("URL")
+    },
+    hide_index=True,
+    use_container_width=True
 )
 # 5. زر للتحديث
 if st.button('🔄 Refresh Data'):

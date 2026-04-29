@@ -39,17 +39,18 @@ existing_columns = [col for col in desired_columns if col in df.columns]
 
 # 3. عرض الجدول مع خاصية التلوين والـ Scroll
 st.dataframe(
-    df[existing_columns],
+    df[existing_columns], 
+    use_container_width=True, 
+    hide_index=True,
     column_config={
-        "status": st.column_config.StatusColumn(
+        "status": st.column_config.SelectboxColumn(
             "Status",
             help="Link Connectivity Status",
-            options=["Live", "Broken"],
+            options=["Live", "Broken", "done", "not work"], # أضفت الكلمات اللي في ملفك عشان تظهر
+            width="small",
         ),
-        "URL": st.column_config.LinkColumn("URL")
-    },
-    hide_index=True,
-    use_container_width=True
+        "URL": st.column_config.LinkColumn("URL", width="medium")
+    }
 )
 # 5. زر للتحديث
 if st.button('🔄 Refresh Data'):

@@ -31,7 +31,7 @@ if 'Status' in df.columns:
 st.subheader("🔗 All Backlinks Details")
 # 1. قائمة الأعمدة اللي إحنا عاوزينها بالترتيب
 # 1. قائمة الأعمدة بالترتيب (تأكد من كتابة status بنفس حالة الأحرف في ملفك)
-desired_columns = ['LinkID', 'URL', 'DA', 'DR', 'Traffic', 'Country', 'SpamScore', 'status']
+desired_columns = ['LinkID', 'URL', 'DA', 'DR', 'Traffic', 'Country', 'SpamScore', 'Status']
 
 # 2. التأكد من وجود الأعمدة في الملف لتجنب الأخطاء
 existing_columns = [col for col in desired_columns if col in df.columns]
